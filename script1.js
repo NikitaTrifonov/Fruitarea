@@ -3,6 +3,7 @@ let countPieceBox = document.querySelector('.count_box');
 let favoriteButton = document.querySelector('.favorite_button');
 let inputCount = countPieceBox.querySelector('.input_count');
 let minusCountButton = countPieceBox.querySelector('.minus_button')
+let plusCountButton = countPieceBox.querySelector('.plus_button')
 
 bascetButton.addEventListener('click', function () {
     bascetButton.style.display = 'none';
@@ -22,13 +23,21 @@ favoriteButton.addEventListener('click', function () {
 })
 
 minusCountButton.addEventListener('click', function () {
-    let countValue = parseInt(inputCount.value);
-    if (countValue == 1) {
+
+    if (inputCount.value == 1) {
         countPieceBox.style.display = 'none';
         bascetButton.style.display = 'block';
     }
     else {
-        countValue--;
-        inputCount.value = countValue;
+        inputCount.value--
+    }
+})
+
+plusCountButton.addEventListener('click', function () {
+    if (inputCount.value ==20) {
+        inputCount.value = 20;
+    }
+    else {
+        inputCount.value++;
     }
 })
