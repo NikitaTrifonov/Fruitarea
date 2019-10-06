@@ -34,7 +34,7 @@ minusCountButton.addEventListener('click', function () {
 })
 
 plusCountButton.addEventListener('click', function () {
-    if (inputCount.value ==20) {
+    if (inputCount.value == 20) {
         inputCount.value = 20;
     }
     else {
