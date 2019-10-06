@@ -30,7 +30,7 @@
 
         <div class="container">
             <ul class="products">
-                <li class="product_item">
+             <!--   <li class="product_item">
                     <div class="product_image image_flex">
                         <a>
                             <img src="assets/images/kokos1.jpg">
@@ -46,7 +46,7 @@
                         <span class="price">
                             <span class="rub">65,</span>
                             <span class="cop">90</span>
-                            <span class="rub_kg">&#x20bd/шт</span>
+                            <span class="rub_kg">₽/шт</span>
                         </span>
                         <div class="buttons_box">
                             <button class="favorite_button" type="button"></button>
@@ -61,9 +61,11 @@
 
                         </div>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
+
+
 
         <section class="modal modal--show">
             <div class="modal__content">
@@ -79,6 +81,76 @@
         </section>
 
     </div>
+
+<template id="product_item_template">
+        <li class="product_item">
+                <div class="product_image image_flex">
+                    <a>
+                        <img src="assets/images/kokos1.jpg">
+                    </a>
+                </div>
+                <div class="product_list">
+                    <h3>Кокоc</h3>
+                    <ul class="product_info">
+                        <li>Куба</li>
+                        <li>1 шт. ~ 0.2 кг.</li>
+                        <li>Срок годности: 4 мес. </li>
+                    </ul>
+                    <span class="price">
+                        <span class="rub">65,</span>
+                        <span class="cop">90</span>
+                        <span class="rub_kg">₽/шт</span>
+                    </span>
+                    <div class="buttons_box">
+                        <button class="favorite_button" type="button"></button>
+                        <button class="bascet_button" type="button"></button>
+
+                        <div class="count_box">
+                            <button class="minus_button" type="button"></button>
+                            <input class="input_count" type="text" name="name" value="1" readonly >
+                            <span class="piece_count">шт.</span>
+                            <button class="plus_button" type="button"></button>                                
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+</template>
+
+  <!--  <template id="product_item_template">
+            <li class="product_item">
+                    <div class="product_image image_flex">
+                        <a>
+                            <img id="product_img" >
+                        </a>
+                    </div>
+                    <div class="product_list">
+                        <h3 id="product_name">Кокоc</h3>
+                        <ul class="product_info">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span class="price">
+                            <span class="rub"></span>
+                            <span class="cop"></span>
+                            <span class="rub_kg">₽/шт</span>
+                        </span>
+                        <div class="buttons_box">
+                            <button class="favorite_button" type="button"></button>
+                            <button class="bascet_button" type="button"></button>
+
+                            <div class="count_box">
+                                <button class="minus_button" type="button"></button>
+                                <input class="input_count" type="text" name="name" value="1" readonly >
+                                <span class="piece_count">шт.</span>
+                                <button class="plus_button" type="button"></button>                                
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+    </template> -->
     <script src="script1.js"></script>
 </body>
 

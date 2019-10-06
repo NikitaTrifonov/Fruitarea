@@ -1,9 +1,30 @@
+/*let productsData = [
+    {
+        imgUrl ='assets/images/orang1.jpg',
+        nameProduct = 'Апельсин'
+    },
+    {
+        imgUrl ='assets/images/orang1.jpg',
+        nameProduct = 'Апельсин'
+    },
+    {
+        imgUrl ='assets/images/orang1.jpg',
+        nameProduct = 'Апельсин'
+    }
+];
+
+*/
+
 let bascetButton = document.querySelector('.bascet_button');
 let countPieceBox = document.querySelector('.count_box');
 let favoriteButton = document.querySelector('.favorite_button');
 let inputCount = countPieceBox.querySelector('.input_count');
 let minusCountButton = countPieceBox.querySelector('.minus_button')
 let plusCountButton = countPieceBox.querySelector('.plus_button')
+let productItemTemplate = document.querySelector('#product_item_template').content;
+let newProductItem = productItemTemplate.querySelector('.product_item');
+let productList = document.querySelector('.products');
+
 
 bascetButton.addEventListener('click', function () {
     bascetButton.style.display = 'none';
@@ -41,3 +62,18 @@ plusCountButton.addEventListener('click', function () {
         inputCount.value++;
     }
 })
+
+for(let i = 0; i<5;i++){
+    let newItem = newProductItem.cloneNode(true);
+    productList.appendChild(newItem);
+}
+
+/*for (let i = 0; i < productsData.length; i++) {
+    let newItem = newProductItem.cloneNode(true);
+    var img = newItem.querySelector('#product_img');
+    img.style.src = productsData[i].imgUrl;
+    img.style.alt = productsData[i].nameProduct;
+    var name = newItem.querySelector('#product_name');
+    name.text() = productsData[i].nameProduct;
+    productList.appendChild(newItem);
+}*/
