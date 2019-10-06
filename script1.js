@@ -63,12 +63,7 @@ plusCountButton.addEventListener('click', function () {
     }
 })
 
-for(let i = 0; i<5;i++){
-    let newItem = newProductItem.cloneNode(true);
-    let tt = newItem.querySelector('.tt');
-    tt.textContent = i;
-    productList.appendChild(newItem);
-}
+
 
 /*for (let i = 0; i < productsData.length; i++) {
     let newItem = newProductItem.cloneNode(true);
