@@ -21,9 +21,9 @@ let favoriteButton = document.querySelector('.favorite_button');
 let inputCount = countPieceBox.querySelector('.input_count');
 let minusCountButton = countPieceBox.querySelector('.minus_button')
 let plusCountButton = countPieceBox.querySelector('.plus_button')
-let productItemTemplate = document.querySelector('#product_item_template').content;
+/*let productItemTemplate = document.querySelector('#product_item_template').content;
 let newProductItem = productItemTemplate.querySelector('.product_item');
-let productList = document.querySelector('.products');
+let productList = document.querySelector('.products');*/
 
 
 bascetButton.addEventListener('click', function () {
