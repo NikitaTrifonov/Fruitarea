@@ -1,10 +1,12 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: url("../images/ananas.jpg") center no-repeat;
+   
     font-size: 15px;
     line-height: 1.6;
     color: #333;
+    background: url("../images/ananas.jpg") center no-repeat;
+    background-attachment: fixed;
    
 }
 
@@ -31,19 +33,21 @@ h1, h2, h3, h4, h5, h6{
     height: 100vh;   
     -webkit-background-size: cover;
     background-size: cover;
+    
 }
 
 
 /*Header*/
 .header{
     width: 100%;    
-
+    
     position: fixed;
     top:0;
     left: 0;
     right: 0;
     z-index: 1;
     background-color: #fff;
+    border-bottom: 1px solid #5b7c4c;
 
 }
 .header_inner{
@@ -109,20 +113,50 @@ h1, h2, h3, h4, h5, h6{
 /*body*/
 /*Image*/
 
+.products{
+    list-style: none;
+	margin: 0 -20px 0 0;
+	padding: 0;
 
-.product_item{
-    position: absolute;
-    width: 250px;
-    height: 350px;
-    margin: 0 auto;
+}
+
+.product_wrapper{
+
+    display: block;
+	width: 100%;
+	float: left;
+    transition: width .2s;
     margin-top: 80px ;
+    
+}
+@media only screen and (min-width: 450px) {
+	.product_wrapper {
+		width:  250px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.product_wrapper {
+		width: 250px;
+	}
+}
+
+@media only screen and (min-width: 1000px) {
+	.product_wrapper {
+		width: 270px;
+	}
+}
+.product_card{
     padding: 10px 10px 5px 10px;
     border: 1px solid #5b7c4c ;
     background: white;
     overflow: hidden;
-    transition: .2s linear; 
+    transition: .2s linear;   
+    height: 350px;
+    margin: 0 20px 20px 0;
 }
-.product_item:hover{
+
+.product_card:hover{
     box-shadow: 0 0 5px 1px #f79b1a;
     border-color:#f79b1a;
 
@@ -138,17 +172,17 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /*Product list*/
-.product_list{
+.product_info{
     margin-top: 15px;
 }
-.product_list h3{
+.product_info h3{
     font-weight: bold;
     color: #333;
     margin: 0;   
     font-size: 16px;
     line-height: 2; 
 }
-.product_info{
+.product_description{
     margin-top: 0 auto;
     line-height: auto;
     margin-left: 5px; 
