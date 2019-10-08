@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6{
     background: white;
     overflow: hidden;
     transition: .2s linear;   
-    height: 350px;
+    height: 360px;
     margin: 0 20px 20px 0;
 }
 
@@ -163,6 +163,9 @@ h1, h2, h3, h4, h5, h6{
 }
 .product_image{
     transition: 1s ease-in-out;     
+}
+#product_img{    
+    height: 120px;
 }
 
 .image_flex{
@@ -179,7 +182,7 @@ h1, h2, h3, h4, h5, h6{
     font-weight: bold;
     color: #333;
     margin: 0;   
-    font-size: 16px;
+    font-size: 18px;
     line-height: 2; 
 }
 .product_description{
@@ -190,8 +193,13 @@ h1, h2, h3, h4, h5, h6{
 
     list-style-type: none;
     font-size: 12px; 
+    
+    
 }
-
+.product_description span{
+    font-weight: bold;
+    
+}
 .price{  
     display: block;
     margin-top: 12px;

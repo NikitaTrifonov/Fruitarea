@@ -12,6 +12,7 @@
 </head>
 
 <body>
+   
     <div class="intro">
 
         <header class="header">
@@ -29,14 +30,14 @@
 
 
         <div class="container">
-
-           <ul class="products">               
-            <li class="product_wrapper">
-                <div class="product_card">
-                <div class="product_image image_flex">
-                    <a>
-                        <img src="assets/images/kokos1.jpg">
-                    </a>
+            
+            <ul class="products">               
+                 <li class="product_wrapper">
+               <div class="product_card">
+                   <div class="product_image image_flex">
+                       <a>
+                           <img id="product_img" src="assets/images/kokos1.jpg">
+                        </a>
                 </div>
                 <div class="product_info">
                     <h3>Кокоc</h3>
@@ -47,7 +48,8 @@
                    
                     </ul>
                     <span class="price">
-                        <span class="rub">65,</span>
+                        <span class="rub">65</span>
+                        <span class="rub">,</span>
                         <span class="cop">90</span>
                         <span class="rub_kg">₽/шт</span>
                     </span>
@@ -65,47 +67,7 @@
                     </div>
                 </div>
               </div>
-            </li>
-            <li class="product_wrapper">
-                <div class="product_card"></div>
-            </li>
-            <li class="product_wrapper">
-                    <div class="product_card"></div>
-                </li>
-                <li class="product_wrapper">
-                        <div class="product_card"></div>
-                    </li>
-                    <li class="product_wrapper">
-                            <div class="product_card"></div>
-                        </li>
-                        <li class="product_wrapper">
-                                <div class="product_card"></div>
-                            </li>
-                            <li class="product_wrapper">
-                                    <div class="product_card"></div>
-                                </li>
-                                <li class="product_wrapper">
-                                        <div class="product_card"></div>
-                                    </li>
-                                    <li class="product_wrapper">
-                                            <div class="product_card"></div>
-                                        </li>
-                                        <li class="product_wrapper">
-                                                <div class="product_card"></div>
-                                            </li>
-                                            <li class="product_wrapper">
-                                                    <div class="product_card"></div>
-                                                </li>
-                                                <li class="product_wrapper">
-                                                        <div class="product_card"></div>
-                                                    </li>
-                                                    <li class="product_wrapper">
-                                                            <div class="product_card"></div>
-                                                        </li>
-                                                        <li class="product_wrapper">
-                                                                <div class="product_card"></div>
-                                                            </li>
-                                                            
+            </li>      
             </ul>
         </div>
 
@@ -128,40 +90,44 @@
 
 
 
-  <!--  <template id="product_item_template">
-            <li class="product_item">
+    <template id="product_card_template">
+            <li class="product_wrapper">
+                    <div class="product_card">
                     <div class="product_image image_flex">
                         <a>
-                            <img id="product_img" >
+                            <img id="product_img">
                         </a>
                     </div>
-                    <div class="product_list">
-                        <h3 id="product_name">Кокоc</h3>
-                        <ul class="product_info">
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                    <div class="product_info">
+                        <h3 id="product_name"></h3>
+                        <ul class="product_description">
+                            <li>Страна:&emsp;<span id="country"></span></li>
+                            <li>Средняя масса:&emsp;<span id="average_weight"></span></li>
+                            <li>Срок годности:&emsp;<span id="shelf_life"></span></li>
+                       
                         </ul>
                         <span class="price">
                             <span class="rub"></span>
+                            <span class="rub">,</span>
                             <span class="cop"></span>
                             <span class="rub_kg">₽/шт</span>
                         </span>
                         <div class="buttons_box">
                             <button class="favorite_button" type="button"></button>
                             <button class="bascet_button" type="button"></button>
-
+    
                             <div class="count_box">
                                 <button class="minus_button" type="button"></button>
-                                <input class="input_count" type="text" name="name" value="1" readonly >
+                                <input class="input_count" type="text" name="name" value="1" readonly>
                                 <span class="piece_count">шт.</span>
                                 <button class="plus_button" type="button"></button>                                
                             </div>
-
+    
                         </div>
                     </div>
-                </li>
-    </template> -->
+                  </div>
+                </li>      
+    </template> 
     <script src="script1.js"></script>
 </body>
 
