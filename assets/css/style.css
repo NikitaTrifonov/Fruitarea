@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6{
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: hidden;
     
   
 }
@@ -103,19 +104,13 @@ h1, h2, h3, h4, h5, h6{
 .nav_link:hover {
     color:#f79b1a;
 }
-.magnifier{
-    width: 12px;
-    height: 12px;
-    filter: hue-rotate(-360deg);
-    margin-right: 5px;
-}
 
 /*body*/
 /*Image*/
 
 .products{
     list-style: none;
-	margin: 0 -20px 0 0;
+	margin: 80px 15px;
 	padding: 0;
 
 }
@@ -125,32 +120,16 @@ h1, h2, h3, h4, h5, h6{
     display: block;
 	width: 100%;
 	float: left;
-    transition: width .2s;
-    margin-top: 80px ;
+    transition: width .2s;   
+    width: 290px;
+  
     
 }
-@media only screen and (min-width: 450px) {
-	.product_wrapper {
-		width:  250px;
-	}
-}
 
-@media only screen and (min-width: 768px) {
-	.product_wrapper {
-		width: 250px;
-	}
-}
-
-@media only screen and (min-width: 1000px) {
-	.product_wrapper {
-		width: 270px;
-	}
-}
 .product_card{
     padding: 10px 10px 5px 10px;
     border: 1px solid #5b7c4c ;
-    background: white;
-    overflow: hidden;
+    background: white;    
     transition: .2s linear;   
     height: 360px;
     margin: 0 20px 20px 0;

@@ -74,15 +74,16 @@ plusCountButton.addEventListener('click', function () {
 
 productsData.forEach(function(productData){
     let newItem = newProductItem.cloneNode(true);
+
     let img = newItem.querySelector('#product_img');
     img.setAttribute('src', productData.imgUrl);
     img.setAttribute('alt', productData.nameProduct);
 
-    let name = newItem.querySelector('#product_name');
-    name.textContent = productData.nameProduct;
+    let ItemName = newItem.querySelector('#product_name');
+    ItemName.textContent = productData.nameProduct;
 
-    let producingСountry = newProductItem.querySelector('#country');
-    producingСountry.textContent = productData.producingСountry;
+    let prodСountry = newProductItem.querySelector('#country');
+    prodСountry.textContent = productData.producingСountry;
 
     let averageWeight = newItem.querySelector('#average_weight');
     averageWeight.textContent = productData.averageWeight;
