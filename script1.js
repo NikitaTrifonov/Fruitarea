@@ -1,8 +1,11 @@
 let productItemTemplate = document.querySelector('#product_card_template').content;
 let newProductItem = productItemTemplate.querySelector('.product_wrapper');
 let productList = document.querySelector('.products');
+let favorite = [];
+let cart = [];
 let productsData = [
     {
+        id: 1,
         imgUrl: 'assets/images/orang1.jpg',
         nameProduct: 'Апельсин',
         producingСountry: 'Уругвай',
@@ -12,6 +15,7 @@ let productsData = [
         price_cop: 99,
     },
     {
+        id: 2,
         imgUrl: 'assets/images/banan1.jpg',
         nameProduct: 'Банан',
         producingСountry: 'Перу',
@@ -21,6 +25,7 @@ let productsData = [
         price_cop: 99,
     },
     {
+        id: 3,
         imgUrl: 'assets/images/mango1.jpg',
         nameProduct: 'Манго',
         producingСountry: 'Колумбия',
@@ -31,6 +36,7 @@ let productsData = [
     }
     ,
     {
+        id: 4,
         imgUrl: 'assets/images/lime1.jpg',
         nameProduct: 'Лайм',
         producingСountry: 'Колумбия',
@@ -41,6 +47,7 @@ let productsData = [
     }
     ,
     {
+        id: 5,
         imgUrl: 'assets/images/strawberry1.jpg',
         nameProduct: 'Клубника',
         producingСountry: 'Италия',
@@ -51,6 +58,7 @@ let productsData = [
     }
     ,
     {
+        id: 6,
         imgUrl: 'assets/images/kokos1.jpg',
         nameProduct: 'Кокос',
         producingСountry: 'Индия',
@@ -61,6 +69,7 @@ let productsData = [
     }
     ,
     {
+        id: 7,
         imgUrl: 'assets/images/nict1.jpg',
         nameProduct: 'Никтарин',
         producingСountry: 'Грузия',
@@ -71,6 +80,7 @@ let productsData = [
     }
     ,
     {
+        id: 8,
         imgUrl: 'assets/images/kiwi1.jpg',
         nameProduct: 'Киви',
         producingСountry: 'Чили',
@@ -81,6 +91,7 @@ let productsData = [
     }
     ,
     {
+        id: 9,
         imgUrl: 'assets/images/dynia1.jpg',
         nameProduct: 'Дыня',
         producingСountry: 'Азербайджан',
@@ -91,6 +102,7 @@ let productsData = [
     }
     ,
     {
+        id: 10,
         imgUrl: 'assets/images/greipfruit1.jpg',
         nameProduct: 'Грейпфрут',
         producingСountry: 'Колумбия',
@@ -101,6 +113,7 @@ let productsData = [
     }
     ,
     {
+        id: 11,
         imgUrl: 'assets/images/grusha1.jpg',
         nameProduct: 'Груша',
         producingСountry: 'Россия',
@@ -111,6 +124,7 @@ let productsData = [
     }
     ,
     {
+        id: 12,
         imgUrl: 'assets/images/persik1.jpg',
         nameProduct: 'Персик',
         producingСountry: 'Греция',
@@ -120,54 +134,94 @@ let productsData = [
         price_cop: 99,
     }
 ]
-let addBuscketButton = function (item) {
-    let bascetButton = item.querySelector('.bascet_button');
+let addCartButtonHandler = function (item) {
+    let cartButton = item.querySelector('.cart_button');
     let countPieceBox = item.querySelector('.count_box');
-    bascetButton.addEventListener('click', function () {
-        bascetButton.style.display = 'none';
+    let sumInCard = item.querySelector('.sum_box_card');
+    let cardDescription = item.querySelector('#info')
+    cartButton.addEventListener('click', function () {
+        cartButton.style.display = 'none';
         countPieceBox.style.display = 'flex';
+        cardDescription.style.display = 'none';
+        sumInCard.style.display = 'block';
     });
 }
 
 let addFavoriteButton = function (item) {
     let favoriteButton = item.querySelector('.favorite_button');
-    favoriteButton.addEventListener('click', function () {
-        if (favoriteButton.style.backgroundImage == 'url("assets/images/heart-shape.png")') {
-            favoriteButton.style.backgroundImage = 'url("assets/images/red-heart-shape.png")';
-
-        }
-        else {
-            favoriteButton.style.backgroundImage = 'url("assets/images/heart-shape.png")';
-
-        }
+    favoriteButton.addEventListener('click', function (evt) {
+        evt.target.classList.toggle('favorite_button_active');
     })
 }
-let addMinusCountButtonHandler = function (item) {
+let addMinusCountButtonHandler = function (item, productData) {
     let minusCountButton = item.querySelector('.minus_button');
     let inputCount = item.querySelector('.input_count');
-    let bascetButton = item.querySelector('.bascet_button');
+    let cartButton = item.querySelector('.cart_button');
     let countPieceBox = item.querySelector('.count_box');
+    let sumInCard = item.querySelector('.sum_box_card');
+    let cardDescription = item.querySelector('#info');
+    let cardSumPrice = item.querySelector('.input_sum');
+    let price = cardSumPrice.value;
+
+
+
     minusCountButton.addEventListener('click', function () {
-        if (inputCount.value == 1) {
+        let count;
+        if (inputCount.value == 0) {
             countPieceBox.style.display = 'none';
-            bascetButton.style.display = 'block';
+            cartButton.style.display = 'block';
+            cardDescription.style.display = 'block';
+            sumInCard.style.display = 'none';
+            return;
+        }
+
+        let findItem = cart.find(i => productData.id === i.id);
+        if (findItem && findItem.count > 1) {
+            count = --findItem.count;
         }
         else {
-            inputCount.value--;
+            cart = cart.filter(i => productData.id !== i.id);
+            count = 0;
         }
+        inputCount.value = count;
+        price = (productData.price_rub + (productData.price_cop / 100)) * count;
+        cardSumPrice.value = price.toFixed(2);
+
+
     })
 }
-let addPlusCountButtonHandler = function (item) {
+let addPlusCountButtonHandler = function (item, productData) {
     let plusCountButton = item.querySelector('.plus_button');
     let inputCount = item.querySelector('.input_count');
+    let cardSumPrice = item.querySelector('.input_sum');
+    let price = 0;
+
+
     plusCountButton.addEventListener('click', function () {
         if (inputCount.value == 20) {
-            inputCount.value = 20;
+            return;
+
+        }
+        let findItem = cart.find(i => productData.id === i.id);
+        if (findItem) {
+            findItem.count++;
         }
         else {
-            inputCount.value++;
-            
+            findItem = { productData, id: productData.id, count: 1 }
+            cart.push(findItem);
+
         }
+        if (inputCount.value == 20) {
+            plusCountButton.setAttribute('disabled', '');
+
+        }
+
+        inputCount.value++;
+
+
+        price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
+        cardSumPrice.value = price.toFixed(2);
+
     })
 }
 
@@ -196,10 +250,10 @@ productsData.forEach(function (productData) {
     let priceCop = newItem.querySelector('#cop');
     priceCop.textContent = productData.price_cop;
 
-    addBuscketButton(newItem);
+    addCartButtonHandler(newItem);
     addFavoriteButton(newItem);
-    addMinusCountButtonHandler(newItem);
-    addPlusCountButtonHandler(newItem);
+    addMinusCountButtonHandler(newItem, productData);
+    addPlusCountButtonHandler(newItem, productData);
 
     productList.appendChild(newItem);
 })
