@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6{
 /*Container*/
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     overflow-x: hidden;
     
@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6{
 
 /*Intro*/
 .intro{
-    width: 100%;
+    width: 80%;
     height: 100vh;   
     -webkit-background-size: cover;
     background-size: cover;
@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0px 50px;
 }
 .header_logo{
     font-size: 30px;
@@ -118,7 +119,7 @@ h1, h2, h3, h4, h5, h6{
 .product_wrapper{
 
     display: block;
-	width: 100%;
+	
 	float: left;
     transition: width .2s;   
     width: 290px;
@@ -300,6 +301,21 @@ h1, h2, h3, h4, h5, h6{
     border: none;
     
     
+}
+
+/*Корзина*/
+.bascket_container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    border: 1px solid #5b7c4c;
+    height: 100%;
+    width: 345px;
+    background-color: #eee;
+    
+}
+.bascket_info_wrapper{
+
 }
 
 /*Попап пункта шапки "КОНТАКТЫ"*/
