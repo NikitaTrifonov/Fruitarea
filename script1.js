@@ -258,3 +258,6 @@ productsData.forEach(function (productData) {
     productList.appendChild(newItem);
 })
 
+let calculatingCart = function(cart){
+    
+}
