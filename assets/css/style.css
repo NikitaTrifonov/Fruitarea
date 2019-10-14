@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6{
 /*Container*/
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     overflow-x: hidden;
     
@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6{
 
 /*Intro*/
 .intro{
-    width: 100%;
+    width: 80%;
     height: 100vh;   
     -webkit-background-size: cover;
     background-size: cover;
@@ -40,8 +40,7 @@ h1, h2, h3, h4, h5, h6{
 
 /*Header*/
 .header{
-    width: 100%;    
-    
+    width: 100%;        
     position: fixed;
     top:0;
     left: 0;
@@ -55,6 +54,7 @@ h1, h2, h3, h4, h5, h6{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0px 50px;
 }
 .header_logo{
     font-size: 30px;
@@ -98,6 +98,13 @@ h1, h2, h3, h4, h5, h6{
     
     transition: opacity .1s linear; 
 }
+.cart_active{
+    color: #f79b1a;       
+    
+}
+.favorite_active{
+    color: #f79b1a; 
+}
 .nav_link:hover::after{
     opacity: 1;
 }
@@ -116,13 +123,10 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .product_wrapper{
-
-    display: block;
-	width: 100%;
+    display: block;	
 	float: left;
     transition: width .2s;   
-    width: 290px;
-  
+    width: 290px; 
     
 }
 
@@ -164,20 +168,46 @@ h1, h2, h3, h4, h5, h6{
     font-size: 18px;
     line-height: 2; 
 }
-.product_description{
+.product_description{   
     margin-top: 0 auto;
     line-height: auto;
     margin-left: 5px; 
     padding-left: 5px;
-
     list-style-type: none;
-    font-size: 12px; 
+    font-size: 12px;     
     
-    
+}
+#info {
+    display: block;
 }
 .product_description span{
     font-weight: bold;
     
+}
+.sum_box_card{
+    position: relative;
+    width: 100%;    
+    margin-top: 10px;
+    display: none;    
+    font-size: 18px;
+    line-height: normal;
+    font-weight: bold;
+    color: black;
+    background-color: #eee;
+}
+.input_sum{
+    color:#333;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    width: 100px;
+    border: none;
+    background-color: #eee;
+    
+}
+.rub_char{
+    color:#333;
 }
 .price{  
     display: block;
@@ -225,18 +255,20 @@ h1, h2, h3, h4, h5, h6{
 }
 .favorite_button{
     background-size: cover;   
-    background-image: url("../images/heart-shape.png") ;
-    background-repeat: no-repeat;  
+    background-image: url("../images/heart-shape.png");
+    background-repeat: no-repeat;      
     
-    
+}
+
+.favorite_button_active{
+    background-image: url("../images/red-heart-shape.png");
 }
 .favorite_button:hover{
    /* background-image: url("../images/red-heart-shape.png");*/
-    transform: scale(1.15);
-   
+    transform: scale(1.15);  
    
 }
-.bascet_button{
+.cart_button{
     
     background-size: cover;   
     background-image: url("../images/shopping-cart.png") ;
@@ -245,24 +277,18 @@ h1, h2, h3, h4, h5, h6{
     
    
 }
-.bascet_button:hover{
+.cart_button:hover{
     
     background-image: url("../images/red-shopping-cart.png") ;
     transform: scale(1.15);
    
     
 }
-.count_box{
- 
-    
+.count_box{    
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    display: none;
-    
-    
-
-   
+    display: none;   
 }
 .plus_button{
     background-size: cover;   
@@ -300,6 +326,38 @@ h1, h2, h3, h4, h5, h6{
     border: none;
     
     
+}
+
+/*Корзина*/
+.cart_container{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    border: 1px solid #5b7c4c;
+    height: 100%;
+    width: 345px;
+    background-color: #eee;
+    justify-content: flex-start;
+    align-content: center;
+    
+}
+.cart_info_wrapper{  
+    margin-top: 80px;
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #5b7c4c;  
+    font-size: 20px;
+    color: 333;
+    text-align: center;
+    
+}
+.cart_empty{
+    display: none;
+}
+.cart_products{
+    border:1px solid red;
 }
 
 /*Попап пункта шапки "КОНТАКТЫ"*/

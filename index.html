@@ -12,27 +12,108 @@
 </head>
 
 <body>
-   
-    <div class="intro">
 
+    <div class="intro">
         <header class="header">
             <div class="container">
                 <div class="header_inner">
                     <div class="header_logo">FruitArea</div>
                     <nav class="nav">
                         <a class="nav_link" href="#">Контакты</a>
-                        <a class="nav_link" href="#">Избранное</a>
-                        <a class="nav_link" href="#">Корзина</a>
+                        <a class="nav_link " href="#">Избранное</a>
+                        <a class="nav_link cart_active" href="#">Корзина</a>
+
                     </nav>
                 </div>
             </div>
         </header>
 
+        <ul class="products">
+        </ul>
 
-        <div class="container">
-            
-            <ul class="products">               
-                 <li class="product_wrapper">
+        <div class="cart_container">
+            <div class="cart_info_wrapper">
+                <span class="cart_empty">Ваша корзина пуста</span>
+                <span >Итого:</span>
+                <input class="all_product_price" type="text" name="name" value="0.00" readonly>
+                <span class="rub_char">₽</span>
+            </div>
+            <ul class="cart_products">
+                <li>1</li>
+            </ul>
+        </div>
+
+
+        <!--  <section class="modal modal--show">
+            <div class="modal__content">
+                <h2>Контакты</h2>
+                <h3>Адрес:</h3>
+                <p>191186, Санкт-Петербург, ул. Большая Конюшенная, д. 19/8</p>
+                <h3>Телефон:</h3>
+                <p>+7 (812) 275-75-75</p>
+                <h3>Почта:</h3>
+                <p>mail@htmlacademy.ru</p>
+
+            </div>
+        </section> -->
+
+    </div>
+
+
+
+    <template id="product_card_template">
+        <li class="product_wrapper">
+            <div class="product_card">
+                <div class="product_image image_flex">
+                    <a>
+                        <img id="product_img">
+                    </a>
+                </div>
+                <div class="product_info">
+                    <h3 id="product_name"></h3>
+                    <ul class="product_description">
+                        <div id="info">
+                            <li>Страна:&emsp;<span id="country"></span></li>
+                            <li>Средняя масса:&emsp;<span id="average_weight"></span></li>
+                            <li>Срок годности:&emsp; <span id="shelf_life"></span></li>
+                        </div>
+                        <li class="sum_box_card">Итого<br> в корзине:
+                            <input class="input_sum" type="number" name="name" value="0.00" readonly>
+                            <span class="rub_char">₽</span>
+                        </li>
+
+                    </ul>
+                    <span class="price">
+                        <span id="rub" class="rub"></span>
+                        <span class="rub">,</span>
+                        <span id="cop" class="cop"></span>
+                        <span class="rub_kg">₽/шт</span>
+                    </span>
+                    <div class="buttons_box">
+                        <button class="favorite_button" type="button"></button>
+                        <button class="cart_button" type="button"></button>
+                        <div class="count_box">
+                            <button class="minus_button " type="button"></button>
+                            <input class="input_count" type="text" name="name" value="0" readonly>
+                            <span class="piece_count">шт.</span>
+                            <button class="plus_button" type="button"></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </li>
+    </template>
+    <script src="script1.js"></script>
+</body>
+
+</html>
+
+
+<!-- 
+       
+    
+    <li class="product_wrapper">
                <div class="product_card">
                    <div class="product_image image_flex">
                        <a>
@@ -56,79 +137,13 @@
                     <div class="buttons_box">
                         <button class="favorite_button" type="button"></button>
                         <button class="bascet_button" type="button"></button>
-
                         <div class="count_box">
                             <button class="minus_button" type="button"></button>
                             <input class="input_count" type="text" name="name" value="1" readonly>
                             <span class="piece_count">шт.</span>
                             <button class="plus_button" type="button"></button>                                
                         </div>
-
                     </div>
                 </div>
               </div>
-            </li>      
-            </ul>
-        </div>
-
-
-
-      <!--  <section class="modal modal--show">
-            <div class="modal__content">
-                <h2>Контакты</h2>
-                <h3>Адрес:</h3>
-                <p>191186, Санкт-Петербург, ул. Большая Конюшенная, д. 19/8</p>
-                <h3>Телефон:</h3>
-                <p>+7 (812) 275-75-75</p>
-                <h3>Почта:</h3>
-                <p>mail@htmlacademy.ru</p>
-
-            </div>
-        </section> -->
-
-    </div>
-
-
-
-    <template id="product_card_template">
-            <li class="product_wrapper">
-                    <div class="product_card">
-                    <div class="product_image image_flex">
-                        <a>
-                            <img id="product_img">
-                        </a>
-                    </div>
-                    <div class="product_info">
-                        <h3 id="product_name"></h3>
-                        <ul class="product_description">
-                            <li>Страна:&emsp;<span id="country"></span></li>
-                            <li>Средняя масса:&emsp;<span id="average_weight"></span></li>
-                            <li>Срок годности:&emsp; <span id="shelf_life"></span></li>
-                       
-                        </ul>
-                        <span class="price">
-                            <span class="rub"></span>
-                            <span class="rub">,</span>
-                            <span class="cop"></span>
-                            <span class="rub_kg">₽/шт</span>
-                        </span>
-                        <div class="buttons_box">
-                            <button class="favorite_button" type="button"></button>
-                            <button class="bascet_button" type="button"></button>
-    
-                            <div class="count_box">
-                                <button class="minus_button" type="button"></button>
-                                <input class="input_count" type="text" name="name" value="1" readonly>
-                                <span class="piece_count">шт.</span>
-                                <button class="plus_button" type="button"></button>                                
-                            </div>
-    
-                        </div>
-                    </div>
-                  </div>
-                </li>      
-    </template> 
-    <script src="script1.js"></script>
-</body>
-
-</html>
+            </li>    -->
