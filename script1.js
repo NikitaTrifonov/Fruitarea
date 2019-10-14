@@ -191,18 +191,18 @@ let addMinusCountButtonHandler = function (item, productData) {
         if (findItem && findItem.count > 1) {
             count = --findItem.count;
 
-           
+
         }
         else {
             cart = cart.filter(i => productData.id !== i.id);
             count = 0;
-         
+
         }
         inputCount.value = count;
         price = (productData.price_rub + (productData.price_cop / 100)) * count;
         cardSumPrice.value = price.toFixed(2);
-        minusFullPriceInCart(productData);             
-        
+        fullPriceInput.value = (plusFullPriceInCart()).toFixed(2);
+
     })
 }
 let addPlusCountButtonHandler = function (item, productData) {
@@ -229,8 +229,8 @@ let addPlusCountButtonHandler = function (item, productData) {
         }
         inputCount.value++;
         price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
-        cardSumPrice.value = price.toFixed(2);   
-        plusFullPriceInCart(productData);
+        cardSumPrice.value = price.toFixed(2);
+        fullPriceInput.value = (plusFullPriceInCart()).toFixed(2);
 
     })
 }
@@ -268,25 +268,14 @@ productsData.forEach(function (productData) {
     productList.appendChild(newItem);
 })
 
-let plusFullPriceInCart = function(productData){   
+let plusFullPriceInCart = function () {
     let fullPrice = 0;
-    cart.forEach(function(productInCart){
-        fullPrice = (productsData.price_rub + (productsData.price_cop / 100)) * productInCart.count;
+    cart.forEach(function (productInCart) {
+        fullPrice += (productInCart.productData.price_rub + (productInCart.productData.price_cop / 100)) * productInCart.count;
     })
-  
-    console.log(fullPrice);
+    return fullPrice;
 }
 
+let addProductInCart = function () {
 
-
-let minusFullPriceInCart = function(productData){
-    let fullPrice = 0;
-    cart.forEach(function(productInCart){
-        fullPrice -= (productData.price_rub + (productData.price_cop / 100)) * productInCart.count;
-    })
-    fullPriceInput.value = fullPrice.toFixed(2);
-}
-
-let addProductInCart = function(){
-    
 }
