@@ -1,6 +1,8 @@
 let productItemTemplate = document.querySelector('#product_card_template').content;
 let newProductItem = productItemTemplate.querySelector('.product_wrapper');
 let productList = document.querySelector('.products');
+let fullPriceInput = document.querySelector('.input_all_product_price');
+let fullPrice = 0;
 let favorite = [];
 let cart = [];
 let productsData = [
@@ -162,9 +164,7 @@ let addMinusCountButtonHandler = function (item, productData) {
     let cardDescription = item.querySelector('#info');
     let cardSumPrice = item.querySelector('.input_sum');
     let price = cardSumPrice.value;
-
-
-
+    
     minusCountButton.addEventListener('click', function () {
         let count;
         if (inputCount.value == 0) {
@@ -178,16 +178,23 @@ let addMinusCountButtonHandler = function (item, productData) {
         let findItem = cart.find(i => productData.id === i.id);
         if (findItem && findItem.count > 1) {
             count = --findItem.count;
+
+           
         }
         else {
             cart = cart.filter(i => productData.id !== i.id);
             count = 0;
+         
         }
         inputCount.value = count;
         price = (productData.price_rub + (productData.price_cop / 100)) * count;
         cardSumPrice.value = price.toFixed(2);
 
 
+        fullPrice -= (productData.price_rub + (productData.price_cop / 100));
+        fullPriceInput.value = fullPrice.toFixed(2);
+              
+        console.log(fullPriceInput);
     })
 }
 let addPlusCountButtonHandler = function (item, productData) {
@@ -217,10 +224,12 @@ let addPlusCountButtonHandler = function (item, productData) {
         }
 
         inputCount.value++;
-
-
         price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
         cardSumPrice.value = price.toFixed(2);
+
+        fullPrice += (productData.price_rub + (productData.price_cop / 100));
+        fullPriceInput.value = fullPrice.toFixed(2);
+       
 
     })
 }
@@ -258,6 +267,8 @@ productsData.forEach(function (productData) {
     productList.appendChild(newItem);
 })
 
-let calculatingCart = function(cart){
-    
-}
+/*let calculatingCart = function(cart){
+    cart.forEach(function(productInCart){
+        fullPrice += productInCart.
+    })
+}*/
