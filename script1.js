@@ -95,6 +95,3 @@ productsData.forEach(function(productData){
     productList.appendChild(newItem);
 })
 
-/*for (let i = 0; i < productsData.length; i++) {
-    
-}*/
