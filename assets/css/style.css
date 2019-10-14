@@ -264,9 +264,11 @@ h1, h2, h3, h4, h5, h6{
     background-image: url("../images/red-heart-shape.png");
 }
 .favorite_button:hover{
-   /* background-image: url("../images/red-heart-shape.png");*/
-    transform: scale(1.15);  
-   
+    transform: scale(1.05);  
+    
+}
+.favorite_button:active{
+transform: scale(1.15);
 }
 .cart_button{
     
@@ -294,16 +296,19 @@ h1, h2, h3, h4, h5, h6{
     background-size: cover;   
     background-image: url("../images/plus\ \(2b\).png") ;
     background-repeat: no-repeat; 
-    border-radius: 20px;
-    
+    border-radius: 20px;   
 }
 
-
 .plus_button:hover{
+    transform: scale(1.05);
+}
+.plus_button:active{
     background-image: url("../images/redplus\(2b\).png");
     transform: scale(1.15);
     box-shadow: 0px 0px 5px 0 rgba(89, 90, 90, 0.3);
 }
+
+
 .minus_button{
     background-size: cover;
     background-image: url("../images/balckMinus.png");
@@ -312,6 +317,9 @@ h1, h2, h3, h4, h5, h6{
     
 }
 .minus_button:hover{
+    transform: scale(1.05);
+}
+.minus_button:active{
     background-image: url("../images/redMinus.png");
     transform: scale(1.15);
     box-shadow: 0px 0px 5px 0 rgba(89, 90, 90, 0.3);
@@ -359,6 +367,56 @@ h1, h2, h3, h4, h5, h6{
 .cart_products{
     border:1px solid red;
 }
+
+.cart_info_button_box{
+    display: flex;
+    justify-content: space-around;
+     width: 100%;    
+     margin-top: 20px;
+     
+}
+
+.cart_info_button_box button{
+    border-radius: 20px;
+    font-size: 15px;
+    height: 35px;
+    width: 130px;
+
+    outline: none; 
+    background-color: #fff;
+    border:1px solid #f79b1a;   
+    
+}
+.cart_info_button_box button:hover{
+    transform: scale(1.03);
+}
+.cart_info_button_box button:active{
+    transform: scale(1.1);
+    background-color: #f79b1a;
+    color:#fff;
+}
+.input_all_product_price{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    width: 100px;
+    border: none;
+    background-color: #eee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Попап пункта шапки "КОНТАКТЫ"*/
 
