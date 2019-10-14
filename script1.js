@@ -2,7 +2,7 @@ let productItemTemplate = document.querySelector('#product_card_template').conte
 let newProductItem = productItemTemplate.querySelector('.product_wrapper');
 let productList = document.querySelector('.products');
 let fullPriceInput = document.querySelector('.input_all_product_price');
-let fullPrice = 0;
+
 let favorite = [];
 let cart = [];
 let productsData = [
@@ -13,8 +13,9 @@ let productsData = [
         producingСountry: 'Уругвай',
         averageWeight: '1 шт. ~ 0.15 кг.',
         shelf_life: '2 мес.',
-        price_rub: 24,
-        price_cop: 99,
+        price_rub: 1,
+        price_cop: 00,
+        maxCount: 20,
     },
     {
         id: 2,
@@ -23,8 +24,9 @@ let productsData = [
         producingСountry: 'Перу',
         averageWeight: '1 шт. ~ 0.2 кг.',
         shelf_life: '2 нед.',
-        price_rub: 9,
-        price_cop: 99,
+        price_rub: 2,
+        price_cop: 00,
+        maxCount: 25,
     },
     {
         id: 3,
@@ -33,8 +35,9 @@ let productsData = [
         producingСountry: 'Колумбия',
         averageWeight: '1 шт. ~ 0.2 кг.',
         shelf_life: '1 мес.',
-        price_rub: 95,
-        price_cop: 99,
+        price_rub: 3,
+        price_cop: 00,
+        maxCount: 30,
     }
     ,
     {
@@ -46,6 +49,7 @@ let productsData = [
         shelf_life: '3 мес.',
         price_rub: 59,
         price_cop: 99,
+        maxCount: 40,
     }
     ,
     {
@@ -57,6 +61,7 @@ let productsData = [
         shelf_life: '2 нед.',
         price_rub: 34,
         price_cop: 99,
+        maxCount: 50,
     }
     ,
     {
@@ -64,10 +69,11 @@ let productsData = [
         imgUrl: 'assets/images/kokos1.jpg',
         nameProduct: 'Кокос',
         producingСountry: 'Индия',
-        averageWeight: '1 шт. ~ 0.3 кг.',
+        averageWeight: '1 шт. ~ 0.6 кг.',
         shelf_life: '3 мес.',
         price_rub: 119,
         price_cop: 99,
+        maxCount: 10,
     }
     ,
     {
@@ -79,6 +85,7 @@ let productsData = [
         shelf_life: '2 мес.',
         price_rub: 37,
         price_cop: 99,
+        maxCount: 30,
     }
     ,
     {
@@ -90,6 +97,7 @@ let productsData = [
         shelf_life: '3 мес.',
         price_rub: 39,
         price_cop: 99,
+        maxCount: 30,
     }
     ,
     {
@@ -101,6 +109,7 @@ let productsData = [
         shelf_life: '1 мес.',
         price_rub: 119,
         price_cop: 99,
+        maxCount: 5,
     }
     ,
     {
@@ -112,6 +121,7 @@ let productsData = [
         shelf_life: '1 мес.',
         price_rub: 99,
         price_cop: 99,
+        maxCount: 10,
     }
     ,
     {
@@ -123,6 +133,7 @@ let productsData = [
         shelf_life: '1 мес.',
         price_rub: 15,
         price_cop: 99,
+        maxCount: 20,
     }
     ,
     {
@@ -134,6 +145,7 @@ let productsData = [
         shelf_life: '3 нед.',
         price_rub: 114,
         price_cop: 99,
+        maxCount: 20,
     }
 ]
 let addCartButtonHandler = function (item) {
@@ -164,7 +176,7 @@ let addMinusCountButtonHandler = function (item, productData) {
     let cardDescription = item.querySelector('#info');
     let cardSumPrice = item.querySelector('.input_sum');
     let price = cardSumPrice.value;
-    
+
     minusCountButton.addEventListener('click', function () {
         let count;
         if (inputCount.value == 0) {
@@ -189,12 +201,8 @@ let addMinusCountButtonHandler = function (item, productData) {
         inputCount.value = count;
         price = (productData.price_rub + (productData.price_cop / 100)) * count;
         cardSumPrice.value = price.toFixed(2);
-
-
-        fullPrice -= (productData.price_rub + (productData.price_cop / 100));
-        fullPriceInput.value = fullPrice.toFixed(2);
-              
-        console.log(fullPriceInput);
+        minusFullPriceInCart(productData);             
+        
     })
 }
 let addPlusCountButtonHandler = function (item, productData) {
@@ -205,7 +213,8 @@ let addPlusCountButtonHandler = function (item, productData) {
 
 
     plusCountButton.addEventListener('click', function () {
-        if (inputCount.value == 20) {
+        if (inputCount.value == productData.maxCount) {
+            plusCountButton.setAttribute('disabled', '');
             return;
 
         }
@@ -218,18 +227,10 @@ let addPlusCountButtonHandler = function (item, productData) {
             cart.push(findItem);
 
         }
-        if (inputCount.value == 20) {
-            plusCountButton.setAttribute('disabled', '');
-
-        }
-
         inputCount.value++;
         price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
-        cardSumPrice.value = price.toFixed(2);
-
-        fullPrice += (productData.price_rub + (productData.price_cop / 100));
-        fullPriceInput.value = fullPrice.toFixed(2);
-       
+        cardSumPrice.value = price.toFixed(2);   
+        plusFullPriceInCart(productData);
 
     })
 }
@@ -267,8 +268,25 @@ productsData.forEach(function (productData) {
     productList.appendChild(newItem);
 })
 
-/*let calculatingCart = function(cart){
+let plusFullPriceInCart = function(productData){   
+    let fullPrice = 0;
     cart.forEach(function(productInCart){
-        fullPrice += productInCart.
+        fullPrice = (productsData.price_rub + (productsData.price_cop / 100)) * productInCart.count;
     })
-}*/
+  
+    console.log(fullPrice);
+}
+
+
+
+let minusFullPriceInCart = function(productData){
+    let fullPrice = 0;
+    cart.forEach(function(productInCart){
+        fullPrice -= (productData.price_rub + (productData.price_cop / 100)) * productInCart.count;
+    })
+    fullPriceInput.value = fullPrice.toFixed(2);
+}
+
+let addProductInCart = function(){
+    
+}
