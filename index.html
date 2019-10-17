@@ -33,17 +33,36 @@
         <div class="cart_container">
             <div class="cart_info_wrapper">
                 <span class="cart_empty">Ваша корзина пуста</span>
-                <span >Итого:</span>
+                <span>Итого:</span>
                 <input class="input_all_product_price" type="text" name="name" value="0.00" readonly>
                 <span class="rub_char">₽</span>
                 <div class="cart_info_button_box">
                     <button>Оформить</button>
                     <button class="clear_cart" type="button">Очистить</button>
                 </div>
-              
+
             </div>
             <ul class="cart_products">
-                <li>1</li>
+                <li class="cartProduct_wrapper">
+                    <div class='cartProduct_flexBox'>
+                        <div class="cartProduct_imgBox">
+                            <img class="cartProduct_img" src="assets/images/banan1.jpg">
+                        </div>
+                        <ul class="cartProduct_info">
+                            <li>
+                                <span class="cartProduct_name">BANANA</span>
+                            </li>
+                            <li>
+                                <input class="cartProduct_inputCount" type="number" name="name" value="0" readonly>
+                                <span class="cartProduct_countText">шт.</span>
+                            </li>
+                            <li><input class="cartProduct_inputPrice" type="number" name="name" value="0.00" readonly>
+                                <span>₽</span>
+                            </li>
+                        </ul>
+                        <button class="cartProduct_buttonDelete">X</button>
+                    </div>
+                </li>
             </ul>
         </div>
 
@@ -110,7 +129,6 @@
     </template>
     <script src="script1.js"></script>
 </body>
-
 </html>
 
 

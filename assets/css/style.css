@@ -364,9 +364,7 @@ transform: scale(1.15);
 .cart_empty{
     display: none;
 }
-.cart_products{
-    border:1px solid red;
-}
+
 
 .cart_info_button_box{
     display: flex;
@@ -406,16 +404,73 @@ transform: scale(1.15);
 }
 
 
+/*Карточка товара в корзине*/
 
+.cart_products{
+list-style: none;
+border-bottom: 1px solid #5b7c4c ;
+padding: 0;
+}
+.cartProduct_wrapper{
+    
+}
+.cartProduct_flexBox{
+display: flex;
+flex-direction: row;
 
+justify-content: space-between;
+height: 100px;
+padding: 5px;
+align-items: initial;
 
+}
+.cartProduct_imgBox{
 
+}
+.cartProduct_img{
+height: 100%;
 
+}
+.cartProduct_info{
+    list-style: none;    
+    padding: 0;
+    line-height: 25px;    
+}
+.cartProduct_info input{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    width: 90px;
+    border: none;
+    background-color: #fff;
+}
+.cartProduct_name{
+   font-weight: bold;
+}
+.cartProduct_buttonDelete{
 
+    border-radius: 12px;
+  
+    height: 25px;
+    width: 25px;
 
+    outline: none; 
+    background-color: #fff;
+    border:1px solid #f79b1a;   
+    
+    font-size: 16px;
+    
+}
 
-
-
+.cartProduct_buttonDelete:hover{
+    transform: scale(1.05);
+}
+.cartProduct_buttonDelete:active{
+    color: #fff;
+    background-color: #f79b1a;
+    transform: scale(1.15);
+}
 
 
 /*Попап пункта шапки "КОНТАКТЫ"*/
