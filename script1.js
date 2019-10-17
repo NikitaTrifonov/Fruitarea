@@ -2,6 +2,7 @@ let productItemTemplate = document.querySelector('#product_card_template').conte
 let newProductItem = productItemTemplate.querySelector('.product_wrapper');
 let productList = document.querySelector('.products');
 let fullPriceInput = document.querySelector('.input_all_product_price');
+let clearCartButton = document.querySelector('.clear_cart');
 
 let favorite = [];
 let cart = [];
@@ -201,7 +202,7 @@ let addMinusCountButtonHandler = function (item, productData) {
         inputCount.value = count;
         price = (productData.price_rub + (productData.price_cop / 100)) * count;
         cardSumPrice.value = price.toFixed(2);
-        fullPriceInput.value = (plusFullPriceInCart()).toFixed(2);
+        fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
 
     })
 }
@@ -223,52 +224,62 @@ let addPlusCountButtonHandler = function (item, productData) {
             findItem.count++;
         }
         else {
-            findItem = { productData, id: productData.id, count: 1 }
-            cart.push(findItem);
-
+          findItem = addProductInCart(productData);
+           
         }
         inputCount.value++;
         price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
         cardSumPrice.value = price.toFixed(2);
-        fullPriceInput.value = (plusFullPriceInCart()).toFixed(2);
+        fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
 
     })
 }
 
-productsData.forEach(function (productData) {
-    let newItem = newProductItem.cloneNode(true);
+clearCartButton.addEventListener('click',function(){
+ 
+    clearProductList();
+    console.log(productList);  
 
-    let img = newItem.querySelector('#product_img');
-    img.setAttribute('src', productData.imgUrl);
-    img.setAttribute('alt', productData.nameProduct);
-
-    let ItemName = newItem.querySelector('#product_name');
-    ItemName.textContent = productData.nameProduct;
-
-    let country = newItem.querySelector('#country');
-    country.textContent = productData.producingСountry;
-
-    let averageWeight = newItem.querySelector('#average_weight');
-    averageWeight.textContent = productData.averageWeight;
-
-    let shelfLife = newItem.querySelector('#shelf_life');
-    shelfLife.textContent = productData.shelf_life;
-
-    let priceRub = newItem.querySelector('#rub');
-    priceRub.textContent = productData.price_rub;
-
-    let priceCop = newItem.querySelector('#cop');
-    priceCop.textContent = productData.price_cop;
-
-    addCartButtonHandler(newItem);
-    addFavoriteButton(newItem);
-    addMinusCountButtonHandler(newItem, productData);
-    addPlusCountButtonHandler(newItem, productData);
-
-    productList.appendChild(newItem);
 })
+let loadProductsInfo = function(){
+   
+    productsData.forEach(function (productData) {
+        let newItem = newProductItem.cloneNode(true);
+    
+        let img = newItem.querySelector('#product_img');
+        img.setAttribute('src', productData.imgUrl);
+        img.setAttribute('alt', productData.nameProduct);
+    
+        let ItemName = newItem.querySelector('#product_name');
+        ItemName.textContent = productData.nameProduct;
+    
+        let country = newItem.querySelector('#country');
+        country.textContent = productData.producingСountry;
+    
+        let averageWeight = newItem.querySelector('#average_weight');
+        averageWeight.textContent = productData.averageWeight;
+    
+        let shelfLife = newItem.querySelector('#shelf_life');
+        shelfLife.textContent = productData.shelf_life;
+    
+        let priceRub = newItem.querySelector('#rub');
+        priceRub.textContent = productData.price_rub;
+    
+        let priceCop = newItem.querySelector('#cop');
+        priceCop.textContent = productData.price_cop;
+    
+        addCartButtonHandler(newItem);
+        addFavoriteButton(newItem);
+        addMinusCountButtonHandler(newItem, productData);
+        addPlusCountButtonHandler(newItem, productData);
+    
+        productList.appendChild(newItem);
+    })
+}
 
-let plusFullPriceInCart = function () {
+
+
+let calculateFullPriceInCart = function () {
     let fullPrice = 0;
     cart.forEach(function (productInCart) {
         fullPrice += (productInCart.productData.price_rub + (productInCart.productData.price_cop / 100)) * productInCart.count;
@@ -276,6 +287,19 @@ let plusFullPriceInCart = function () {
     return fullPrice;
 }
 
-let addProductInCart = function () {
-
+let addProductInCart = function (productData) {
+    let findItem = { productData, id: productData.id, count: 1 }
+    cart.push(findItem);
+    return findItem;    
 }
+
+let cleatCart = function(){
+    cart.length = 0;
+}
+
+let clearProductList = function(){
+    while(productList.firstElement){
+        productList.removeChild(productList.firstChild);
+    }
+}
+loadProductsInfo();
