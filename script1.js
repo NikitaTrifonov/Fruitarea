@@ -236,8 +236,10 @@ let addPlusCountButtonHandler = function (item, productData) {
 }
 
 clearCartButton.addEventListener('click',function(){
- 
-    clearProductList();
+    cleatCart();
+    fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
+    clearProductList();    
+    loadProductsInfo();    
     console.log(productList);  
 
 })
@@ -298,7 +300,7 @@ let cleatCart = function(){
 }
 
 let clearProductList = function(){
-    while(productList.firstElement){
+    while(productList.firstChild){
         productList.removeChild(productList.firstChild);
     }
 }
