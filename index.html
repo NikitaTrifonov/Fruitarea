@@ -42,27 +42,7 @@
                 </div>
 
             </div>
-            <ul class="cart_products">
-                <li class="cartProduct_wrapper">
-                    <div class='cartProduct_flexBox'>
-                        <div class="cartProduct_imgBox">
-                            <img class="cartProduct_img" src="assets/images/banan1.jpg">
-                        </div>
-                        <ul class="cartProduct_info">
-                            <li>
-                                <span class="cartProduct_name">BANANA</span>
-                            </li>
-                            <li>
-                                <input class="cartProduct_inputCount" type="number" name="name" value="0" readonly>
-                                <span class="cartProduct_countText">шт.</span>
-                            </li>
-                            <li><input class="cartProduct_inputPrice" type="number" name="name" value="0.00" readonly>
-                                <span>₽</span>
-                            </li>
-                        </ul>
-                        <button class="cartProduct_buttonDelete">X</button>
-                    </div>
-                </li>
+            <ul class="cart_products">               
             </ul>
         </div>
 
@@ -82,7 +62,28 @@
 
     </div>
 
-
+<template id="product_cart_template">
+        <li class="cartProduct_wrapper">
+                <div class='cartProduct_flexBox'>
+                    <div class="cartProduct_imgBox">
+                        <img class="cartProduct_img">
+                    </div>
+                    <ul class="cartProduct_info">
+                        <li>
+                            <span class="cartProduct_name">BANANA</span>
+                        </li>
+                        <li>
+                            <input class="cartProduct_inputCount" type="number" name="name" value="0" readonly>
+                            <span class="cartProduct_countText">шт.</span>
+                        </li>
+                        <li><input class="cartProduct_inputPrice" type="number" name="name" value="0.00" readonly>
+                            <span>₽</span>
+                        </li>
+                    </ul>
+                    <button class="cartProduct_buttonDelete">X</button>
+                </div>
+            </li>
+</template>
 
     <template id="product_card_template">
         <li class="product_wrapper">

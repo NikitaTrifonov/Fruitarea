@@ -1,6 +1,12 @@
 let productItemTemplate = document.querySelector('#product_card_template').content;
 let newProductItem = productItemTemplate.querySelector('.product_wrapper');
+
+let productCartTemplate = document.querySelector('#product_cart_template').content;
+let newCartProduct = productCartTemplate.querySelector('.cartProduct_wrapper');
+
 let productList = document.querySelector('.products');
+let productCartList = document.querySelector('.cart_products');
+
 let fullPriceInput = document.querySelector('.input_all_product_price');
 let clearCartButton = document.querySelector('.clear_cart');
 
@@ -231,7 +237,8 @@ let addPlusCountButtonHandler = function (item, productData) {
         price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
         cardSumPrice.value = price.toFixed(2);
         fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
-
+        console.log(newCartProduct);
+        printProductInCart();
     })
 }
 
@@ -274,11 +281,30 @@ let loadProductsInfo = function(){
         addFavoriteButton(newItem);
         addMinusCountButtonHandler(newItem, productData);
         addPlusCountButtonHandler(newItem, productData);
-    
+        
+
         productList.appendChild(newItem);
     })
 }
 
+let printProductInCart = function(){
+
+
+    cart.forEach(function(productCart){
+        let newCartItem = newCartProduct.cloneNode(true);
+
+        let img = newCartItem.querySelector('.cartProduct_img');
+        img.setAttribute('src',productCart.productData.imgUrl);
+        img.setAttribute('alt',productCart.productData.nameProduct);
+
+
+
+        productCartList.appendChild(newCartItem);
+    })
+
+ 
+
+}
 
 
 let calculateFullPriceInCart = function () {
