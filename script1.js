@@ -23,6 +23,7 @@ let productsData = [
         price_rub: 1,
         price_cop: 00,
         maxCount: 20,
+
     },
     {
         id: 2,
@@ -176,6 +177,7 @@ let addFavoriteButton = function (item) {
 }
 let addMinusCountButtonHandler = function (item, productData) {
     let minusCountButton = item.querySelector('.minus_button');
+    let plusCountButton = item.querySelector('.plus_button');
     let inputCount = item.querySelector('.input_count');
     let cartButton = item.querySelector('.cart_button');
     let countPieceBox = item.querySelector('.count_box');
@@ -185,7 +187,8 @@ let addMinusCountButtonHandler = function (item, productData) {
     let price = cardSumPrice.value;
 
     minusCountButton.addEventListener('click', function () {
-        let count;
+        let count = 0;
+        plusCountButton.disabled = false;
         if (inputCount.value == 0) {
             countPieceBox.style.display = 'none';
             cartButton.style.display = 'block';
@@ -197,8 +200,6 @@ let addMinusCountButtonHandler = function (item, productData) {
         let findItem = cart.find(i => productData.id === i.id);
         if (findItem && findItem.count > 1) {
             count = --findItem.count;
-
-
         }
         else {
             cart = cart.filter(i => productData.id !== i.id);
@@ -209,6 +210,7 @@ let addMinusCountButtonHandler = function (item, productData) {
         price = (productData.price_rub + (productData.price_cop / 100)) * count;
         cardSumPrice.value = price.toFixed(2);
         fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
+        printProductInCart();
 
     })
 }
@@ -221,91 +223,112 @@ let addPlusCountButtonHandler = function (item, productData) {
 
     plusCountButton.addEventListener('click', function () {
         if (inputCount.value == productData.maxCount) {
-            plusCountButton.setAttribute('disabled', '');
+            plusCountButton.disabled = true;
             return;
 
         }
-        let findItem = cart.find(i => productData.id === i.id);
-        if (findItem) {
-            findItem.count++;
-        }
         else {
-          findItem = addProductInCart(productData);
-           
+            let findItem = cart.find(i => productData.id === i.id);
+            if (findItem) {
+                findItem.count++;
+            }
+            else {
+                findItem = addProductInCart(productData);
+
+            }
+            inputCount.value++;
+            price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
+            cardSumPrice.value = price.toFixed(2);
+            fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
+            printProductInCart();
         }
-        inputCount.value++;
-        price = (productData.price_rub + (productData.price_cop / 100)) * findItem.count;
-        cardSumPrice.value = price.toFixed(2);
-        fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
-        console.log(newCartProduct);
-        printProductInCart();
     })
 }
 
-clearCartButton.addEventListener('click',function(){
+clearCartButton.addEventListener('click', function () {
     cleatCart();
     fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
-    clearProductList();    
-    loadProductsInfo();    
-    console.log(productList);  
-
+    clearProductList();
+    loadProductsInfo();
+    printProductInCart();
 })
-let loadProductsInfo = function(){
-   
+
+let addDelButtonProductCart = function (cartItem, productCart) {
+    let delButton = cartItem.querySelector('.cartProduct_buttonDelete');
+    let zero = 0;
+
+    delButton.addEventListener('click', function () {
+        cart = cart.filter(i => productCart.id !== i.id);
+        productCart.count = 0;
+        printProductInCart();
+
+        let productCard = document.getElementById(productCart.id);
+        productCard.querySelector('.input_count').value = 0;
+        productCard.querySelector('.input_sum').value = zero.toFixed(2);
+        cardCountHide(productCard);   
+        fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
+    })
+
+}
+let loadProductsInfo = function () {
+
     productsData.forEach(function (productData) {
         let newItem = newProductItem.cloneNode(true);
-    
+        newItem.id = productData.id;
+
         let img = newItem.querySelector('#product_img');
         img.setAttribute('src', productData.imgUrl);
         img.setAttribute('alt', productData.nameProduct);
-    
+
         let ItemName = newItem.querySelector('#product_name');
         ItemName.textContent = productData.nameProduct;
-    
+
         let country = newItem.querySelector('#country');
         country.textContent = productData.producingСountry;
-    
+
         let averageWeight = newItem.querySelector('#average_weight');
         averageWeight.textContent = productData.averageWeight;
-    
+
         let shelfLife = newItem.querySelector('#shelf_life');
         shelfLife.textContent = productData.shelf_life;
-    
+
         let priceRub = newItem.querySelector('#rub');
         priceRub.textContent = productData.price_rub;
-    
+
         let priceCop = newItem.querySelector('#cop');
         priceCop.textContent = productData.price_cop;
-    
+
         addCartButtonHandler(newItem);
         addFavoriteButton(newItem);
         addMinusCountButtonHandler(newItem, productData);
         addPlusCountButtonHandler(newItem, productData);
-        
-
         productList.appendChild(newItem);
     })
 }
 
-let printProductInCart = function(){
-
-
-    cart.forEach(function(productCart){
+let printProductInCart = function () {
+    clearCartList();
+    cart.forEach(function (productCart) {
         let newCartItem = newCartProduct.cloneNode(true);
 
         let img = newCartItem.querySelector('.cartProduct_img');
-        img.setAttribute('src',productCart.productData.imgUrl);
-        img.setAttribute('alt',productCart.productData.nameProduct);
+        img.setAttribute('src', productCart.productData.imgUrl);
+        img.setAttribute('alt', productCart.productData.nameProduct);
 
+        let name = newCartItem.querySelector('.cartProduct_name');
+        name.textContent = productCart.productData.nameProduct;
 
+        let count = newCartItem.querySelector('.cartProduct_inputCount');
+        count.value = productCart.count;
+
+        let price = newCartItem.querySelector('.cartProduct_inputPrice');
+        price.value = ((productCart.productData.price_rub + (productCart.productData.price_cop / 100)) * productCart.count).toFixed(2);
+
+        addDelButtonProductCart(newCartItem, productCart);
 
         productCartList.appendChild(newCartItem);
     })
-
- 
-
 }
-
 
 let calculateFullPriceInCart = function () {
     let fullPrice = 0;
@@ -316,18 +339,31 @@ let calculateFullPriceInCart = function () {
 }
 
 let addProductInCart = function (productData) {
-    let findItem = { productData, id: productData.id, count: 1 }
-    cart.push(findItem);
-    return findItem;    
+    let productCart = { productData, id: productData.id, count: 1 }
+    cart.push(productCart);
+    return productCart;
 }
 
-let cleatCart = function(){
+let cleatCart = function () {
     cart.length = 0;
 }
 
-let clearProductList = function(){
-    while(productList.firstChild){
+let clearProductList = function () {
+    while (productList.firstChild) {
         productList.removeChild(productList.firstChild);
     }
+}
+
+let clearCartList = function () {
+    while (productCartList.firstChild) {
+        productCartList.removeChild(productCartList.firstChild);
+    }
+}
+
+let cardCountHide = function(productCard){
+    productCard.querySelector('.cart_button').style.display = 'block';
+    productCard.querySelector('.count_box').style.display = 'none';
+    productCard.querySelector('.sum_box_card').style.display = 'none';
+    productCard.querySelector('#info').style.display = 'block';
 }
 loadProductsInfo();
