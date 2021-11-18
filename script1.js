@@ -21,7 +21,7 @@ let productsData = [
         averageWeight: '1 шт. ~ 0.15 кг.',
         shelf_life: '2 мес.',
         price_rub: 1,
-        price_cop: 00,
+        price_cop: 0,
         maxCount: 20,
 
     },
@@ -33,7 +33,7 @@ let productsData = [
         averageWeight: '1 шт. ~ 0.2 кг.',
         shelf_life: '2 нед.',
         price_rub: 2,
-        price_cop: 00,
+        price_cop: 0,
         maxCount: 25,
     },
     {
@@ -44,7 +44,7 @@ let productsData = [
         averageWeight: '1 шт. ~ 0.2 кг.',
         shelf_life: '1 мес.',
         price_rub: 3,
-        price_cop: 00,
+        price_cop: 0,
         maxCount: 30,
     }
     ,
@@ -200,8 +200,7 @@ let addMinusCountButtonHandler = function (item, productData) {
         let findItem = cart.find(i => productData.id === i.id);
         if (findItem && findItem.count > 1) {
             count = --findItem.count;
-        }
-        else {
+        } else {
             cart = cart.filter(i => productData.id !== i.id);
             count = 0;
 
@@ -226,13 +225,11 @@ let addPlusCountButtonHandler = function (item, productData) {
             plusCountButton.disabled = true;
             return;
 
-        }
-        else {
+        } else {
             let findItem = cart.find(i => productData.id === i.id);
             if (findItem) {
                 findItem.count++;
-            }
-            else {
+            } else {
                 findItem = addProductInCart(productData);
 
             }
@@ -265,7 +262,7 @@ let addDelButtonProductCart = function (cartItem, productCart) {
         let productCard = document.getElementById(productCart.id);
         productCard.querySelector('.input_count').value = 0;
         productCard.querySelector('.input_sum').value = zero.toFixed(2);
-        cardCountHide(productCard);   
+        cardCountHide(productCard);
         fullPriceInput.value = (calculateFullPriceInCart()).toFixed(2);
     })
 
@@ -339,7 +336,7 @@ let calculateFullPriceInCart = function () {
 }
 
 let addProductInCart = function (productData) {
-    let productCart = { productData, id: productData.id, count: 1 }
+    let productCart = {productData, id: productData.id, count: 1}
     cart.push(productCart);
     return productCart;
 }
@@ -360,7 +357,7 @@ let clearCartList = function () {
     }
 }
 
-let cardCountHide = function(productCard){
+let cardCountHide = function (productCard) {
     productCard.querySelector('.cart_button').style.display = 'block';
     productCard.querySelector('.count_box').style.display = 'none';
     productCard.querySelector('.sum_box_card').style.display = 'none';
