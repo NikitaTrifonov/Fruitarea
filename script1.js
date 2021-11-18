@@ -67,7 +67,7 @@ let productsData = [
         producingСountry: 'Италия',
         averageWeight: '1 шт. ~ 0.1 кг.',
         shelf_life: '2 нед.',
-        price_rub: 34,
+        price_rub: 35,
         price_cop: 99,
         maxCount: 50,
     }
